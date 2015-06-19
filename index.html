@@ -52,6 +52,7 @@
         color.r += y / radius;
         color.g +=  1.0 - (y / radius); // it will be green near to the ground
         color.b += y * 2.0 / radius;
+        color.a = vPosition.y / radius;
         gl_FragColor = color;
 
       }

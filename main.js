@@ -64,8 +64,8 @@
     camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 20000 );
     scene = new THREE.Scene();
 
-    camera.position.y = 2500;
-    camera.position.z = 2500;
+    camera.position.y = 2000;
+    camera.position.z = 2000;
     camera.rotation.x = -Math.PI / 4;
 
     var geometry = new THREE.PlaneBufferGeometry( planeWidth, planeHeight, segments, segments);

@@ -1,6 +1,6 @@
 ## Threejs - ShaderMaterial
 
-[Codepen demo](http://codepen.io/mauriciomassaia/pen/zGeYyX)
+[Codepen demo](http://codepen.io/mauriciomassaia/full/zGeYyX/)
 
 ![](./screenshot.jpg)
 

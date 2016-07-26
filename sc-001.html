@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Shader Material + Soundcloud</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+      body { background-color: #222; color: #ddd; margin: 0px; padding: 0px; overflow: hidden; }
+    </style>
+  </head>
+  <body>
+
+    <div id="container"><br /><br /><br /><br /><br />loading...</div>
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+    <script src="libs/three.min.js"></script>
+    <script src="libs/stats.min.js"></script>
+    <script src="libs/dat.gui.min.js"></script>
+
+    <script id="vertexShader" type="x-shader/x-vertex">
+
+      attribute float vertexPos;
+      attribute vec4 color;
+      uniform float time;
+      uniform float radius;
+      uniform float planeSize;
+      varying vec3 vPosition;
+      varying vec4 vColor;
+
+      void main() {
+
+        float angInc = 3.1416 / planeSize;
+        float angle = (position.x  + position.z + planeSize) / 2.0 ;
+        vPosition = position;
+        vPosition.y += sin(angle * angInc + time) * radius + radius;
+        vec4 myPos = modelViewMatrix * vec4(vPosition, 1.0);
+        gl_Position = projectionMatrix * myPos;
+
+      }
+
+    </script>
+
+    <script id="fragmentShader" type="x-shader/x-fragment">
+
+      varying vec3 vPosition;
+      varying vec4 vColor;
+      uniform float time;
+      uniform float radius;
+
+      void main() {
+
+        vec4 color = vec4( vColor );
+        float y = vPosition.y + (radius) * 0.1;
+        color.r += y / radius ;
+        color.g +=  1.0 - (y / radius); // it will be green near to the ground
+        color.b += y * 2.0 / radius;
+        color.a = vPosition.y / radius;
+        gl_FragColor = color;
+
+      }
+
+    </script>
+
+    <script src="sc-001.js"></script>
+
+  </body>
+</html>
